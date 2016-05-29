@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Testing Details</title>
+<script type="text/javascript" src="details.js"></script>
+<script type="text/javascript" src="json2.js"></script>
+</head>
+<body>
+	<pre>
+	<code id=jsonPretty>
+	</code>
+	</pre>
+</body>
+<script type="text/javascript">
+	var obj = ANDLOG_f();
+	var element = document.getElementById('jsonPretty');
+	element.innerHTML = JSON.stringify(obj, undefined, '\t');
+</script>
+</html>
