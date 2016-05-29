@@ -1,4 +1,3 @@
-// All arrays - separated by ',' or ';' or ' ' are taken to be 1 Dimensional
 // Only during printing, their nomenclature will change
 // Good read: http://javascript.info/tutorial/arguments#keyword-arguments
 
@@ -23,7 +22,7 @@ function scicos_graphics() {
 
 	this.type=new ScilabString(new data("graphics",i++,l),new data("orig",i++,l),new data("sz",i++,l),new data("flip",i++,l),new data("theta",i++,l),new data("exprs",i++,l),new data("pin",i++,l),new data("pout",i++,l),new data("pein",i++,l),new data("peout",i++,l),new data("gr_i",i++,l),new data("id",i++,l),new data("in_implicit",i++,l),new data("out_implicit",i++,l),new data("in_style",i++,l),new data("out_style",i++,l),new data("in_label",i++,l),new data("out_label",i++,l),new data("style",i++,l));
 	this.orig = options.orig || new ScilabDouble(new data(0,0,0),new data(0,1,0));
-	this.sz = options.sz || new ScilabDouble(new data(80,0,0),new data(80,1,0)); // Space and comma works the same!
+	this.sz = options.sz || new ScilabDouble(new data(80,0,0),new data(80,1,0));
 	this.flip = options.flip || new ScilabBoolean(new data("true",0,0));
 	this.theta = options.theta || new ScilabDouble(new data(0,0,0));
 	this.exprs = options.exprs || new ScilabDouble();
@@ -34,7 +33,7 @@ function scicos_graphics() {
 	this.gr_i = options.gr_i || new ScilabString();
 	this.id = options.id || new ScilabString(new data("",0,0));
 	this.in_implicit = options.in_implicit || new ScilabDouble();
-	this.out_implicit = options.out_implicit || new ScilabDouble(); // There is only one!
+	this.out_implicit = options.out_implicit || new ScilabDouble();
 	this.in_style = options.in_style || new ScilabDouble();
 	this.out_style = options.out_style || new ScilabDouble();
 	this.in_label = options.in_label || new ScilabDouble();
@@ -104,7 +103,7 @@ function standard_define() {
 	return new scicos_block(block_options);
 }
 
-function convert2Double()
+function convert2Double() //helper function
 {
 	var port=new ScilabDouble();
 	var i=0;

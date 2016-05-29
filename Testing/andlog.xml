@@ -1,0 +1,174 @@
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <BasicBlock name="ANDBLK" label="&lt;img src=&quot;blocks/ANDBLK.svg&quot; height=&quot;80&quot; width=&quot;80&quot;&gt;" id="2">
+<Array scilabClass="ScilabMList">
+  <ScilabString width="5">
+    <data column="0" line="0" value="block" as="data0"/>
+    <data column="1" line="0" value="graphics" as="data1"/>
+    <data column="2" line="0" value="model" as="data2"/>
+    <data column="3" line="0" value="gui" as="data3"/>
+    <data column="4" line="0" value="docs" as="data4"/>
+  </ScilabString>
+  <Array scilabClass="ScilabMList">
+    <ScilabString width="19">
+      <data column="0" line="0" value="graphics" as="data0"/>
+      <data column="1" line="0" value="orig" as="data1"/>
+      <data column="2" line="0" value="sz" as="data2"/>
+      <data column="3" line="0" value="flip" as="data3"/>
+      <data column="4" line="0" value="theta" as="data4"/>
+      <data column="5" line="0" value="exprs" as="data5"/>
+      <data column="6" line="0" value="pin" as="data6"/>
+      <data column="7" line="0" value="pout" as="data7"/>
+      <data column="8" line="0" value="pein" as="data8"/>
+      <data column="9" line="0" value="peout" as="data9"/>
+      <data column="10" line="0" value="gr_i" as="data10"/>
+      <data column="11" line="0" value="id" as="data11"/>
+      <data column="12" line="0" value="in_implicit" as="data12"/>
+      <data column="13" line="0" value="out_implicit" as="data13"/>
+      <data column="14" line="0" value="in_style" as="data14"/>
+      <data column="15" line="0" value="out_style" as="data15"/>
+      <data column="16" line="0" value="in_label" as="data16"/>
+      <data column="17" line="0" value="out_label" as="data17"/>
+      <data column="18" line="0" value="style" as="data18"/>
+    </ScilabString>
+    <ScilabDouble width="2">
+      <data column="0" line="0" realPart="0" as="data0"/>
+      <data column="1" line="0" realPart="0" as="data1"/>
+    </ScilabDouble>
+    <ScilabDouble width="2">
+      <data column="0" line="0" realPart="80" as="data0"/>
+      <data column="1" line="0" realPart="80" as="data1"/>
+    </ScilabDouble>
+    <ScilabBoolean width="1">
+      <data column="0" line="0" value="true" as="data0"/>
+    </ScilabBoolean>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="0" as="data0"/>
+    </ScilabDouble>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <Array scilabClass="ScilabList">
+      <ScilabString width="1">
+        <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;ANDLOG_f&quot;,sz(1),sz(2));" as="data0"/>
+      </ScilabString>
+      <ScilabDouble width="1">
+        <data column="0" line="0" realPart="8" as="data0"/>
+      </ScilabDouble>
+    </Array>
+    <ScilabString width="1">
+      <data column="0" line="0" value="" as="data0"/>
+    </ScilabString>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabString width="1">
+      <data column="0" line="0" value="ANDLOG_f" as="data0"/>
+    </ScilabString>
+  </Array>
+  <Array scilabClass="ScilabMList">
+    <ScilabString width="24">
+      <data column="0" line="0" value="model" as="data0"/>
+      <data column="1" line="0" value="sim" as="data1"/>
+      <data column="2" line="0" value="in" as="data2"/>
+      <data column="3" line="0" value="in2" as="data3"/>
+      <data column="4" line="0" value="intyp" as="data4"/>
+      <data column="5" line="0" value="out" as="data5"/>
+      <data column="6" line="0" value="out2" as="data6"/>
+      <data column="7" line="0" value="outtyp" as="data7"/>
+      <data column="8" line="0" value="evtin" as="data8"/>
+      <data column="9" line="0" value="evtout" as="data9"/>
+      <data column="10" line="0" value="state" as="data10"/>
+      <data column="11" line="0" value="dstate" as="data11"/>
+      <data column="12" line="0" value="odstate" as="data12"/>
+      <data column="13" line="0" value="rpar" as="data13"/>
+      <data column="14" line="0" value="ipar" as="data14"/>
+      <data column="15" line="0" value="opar" as="data15"/>
+      <data column="16" line="0" value="blocktype" as="data16"/>
+      <data column="17" line="0" value="firing" as="data17"/>
+      <data column="18" line="0" value="dep_ut" as="data18"/>
+      <data column="19" line="0" value="label" as="data19"/>
+      <data column="20" line="0" value="nzcross" as="data20"/>
+      <data column="21" line="0" value="nmode" as="data21"/>
+      <data column="22" line="0" value="equations" as="data22"/>
+      <data column="23" line="0" value="uid" as="data23"/>
+    </ScilabString>
+    <ScilabString width="1">
+      <data column="0" line="0" value="andlog" as="data0"/>
+    </ScilabString>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="1" as="data0"/>
+    </ScilabDouble>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="1" as="data0"/>
+    </ScilabDouble>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="1" as="data0"/>
+    </ScilabDouble>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="1" as="data0"/>
+    </ScilabDouble>
+    <ScilabDouble width="2">
+      <data column="0" line="0" realPart="-1" as="data0"/>
+      <data column="1" line="0" realPart="-1" as="data1"/>
+    </ScilabDouble>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <Array scilabClass="ScilabList"/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabDouble/>
+    <ScilabString width="1">
+      <data column="0" line="0" value="d" as="data0"/>
+    </ScilabString>
+    <ScilabDouble/>
+    <ScilabBoolean width="2">
+      <data column="0" line="0" value="false" as="data0"/>
+      <data column="1" line="0" value="false" as="data1"/>
+    </ScilabBoolean>
+    <ScilabString/>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="0" as="data0"/>
+    </ScilabDouble>
+    <ScilabDouble width="1">
+      <data column="0" line="0" realPart="0" as="data0"/>
+    </ScilabDouble>
+    <Array scilabClass="ScilabList"/>
+    <ScilabString/>
+  </Array>
+  <ScilabString width="1">
+    <data column="0" line="0" value="ANDLOG_f" as="data0"/>
+  </ScilabString>
+  <Array scilabClass="ScilabList"/>
+</Array>
+      <mxCell style="ANDBLK" vertex="1" connectable="0" parent="1">
+        <mxGeometry x="130" y="110" width="80" height="80" as="geometry"/>
+      </mxCell>
+    </BasicBlock>
+    <mxCell id="3" value="ControlPort" style="ControlPort" vertex="1" parent="2">
+      <mxGeometry x="0.3333" width="10" height="10" relative="1" as="geometry">
+        <mxPoint x="-6" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="4" value="ControlPort" style="ControlPort" vertex="1" parent="2">
+      <mxGeometry x="0.6667" width="10" height="10" relative="1" as="geometry">
+        <mxPoint x="-6" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="5" value="CommandPort" style="CommandPort" vertex="1" parent="2">
+      <mxGeometry x="0.5000" y="1" width="10" height="10" relative="1" as="geometry">
+        <mxPoint x="-6" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>
