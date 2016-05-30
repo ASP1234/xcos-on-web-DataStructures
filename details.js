@@ -144,13 +144,13 @@ function standard_define() {
 	}
 
 	gr_i = list(gr_i, new ScilabDouble(new data(8, 0, 0)));
-	/*
+	
 	if (gr_i[1] == []) {
 		gr_i[1] = new ScilabDouble(new data(8, 0, 0));
 	}
 	if (gr_i[1] == 0) {
 		gr_i[1] = new ScilabDouble();
-	}*/
+	}
 
 	var graphics_options = {
 		sz: sz,
@@ -335,13 +335,37 @@ function zeros(n) {
 
 
 function scicos_link() {
-	this.xx = [];
-	this.yy = [];
-	this.id = '';
-	this.thick = [0, 0];
-	this.ct = [1, 1];
-	this.from = [];
-	this.to = [];
+	var options=arguments[0];
+	var i=0;
+	var l=0;
+	this.type = new ScilabString(new data("Link", i++, l),new data("xx", i++, l),new data("yy", i++, l),new data("id", i++, l),new data("thick", i++, l),new data("ct", i++, l),new data("from", i++, l),new data("to", i++, l));
+	this.xx = options.xx || new ScilabDouble(); //inverse array
+	this.yy = options.yy || new ScilabDouble(); //inverse array
+	this.id = options.id || new ScilabString();
+	this.thick =options.thick || new ScilabDouble(new data(0,0,0),new data(0,1,0));
+	this.ct = options.ct || new ScilabDouble(new data(1,0,0), new data(1,1,0));
+	this.from = options.from || new ScilabDouble();
+	this.to = options.xx || new ScilabDouble();
+	
+	return mlist(this.type,this.xx,this.yy,this.id,this.thick,this.ct,this.from,this.to);
+}
+
+function CLKIN_f() {
+	var model = scicos_model();
+	var port=1;
+	
+	model[sim] = new ScilabString(new data('input', 0, 0));
+	model[evtout] = new ScilabDouble(); // 1, 1 -> -1, -1
+	model[ipar]=new ScilabDouble(new data(port,0,0));
+	model[blocktype] = new ScilabString(new data('d', 0, 0));
+	model[firing] = new ScilabDouble(new data(-1,0,0));
+	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
+	
+	var exprs=ScilabString(new data(port.toString(),0,0));
+	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model,exprs,new ScilabString()); // 1 -> 80
+	
+	block[graphics][style] = new ScilabString(new data("CLKIN_f", 0, 0));
+	return block
 }
 
 function ANDLOG_f() {
