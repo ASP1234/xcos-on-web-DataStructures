@@ -301,12 +301,19 @@ function scicos_model() {
 
 
 
-// This might also have to be overloaded
 function scicos_diagram() {
-	this.props = new scicos_params();
-	this.objs = [];
-	this.version = '';
-	this.contrib = [];
+	
+	var options = arguments[0] || new Object();
+	var i = 0;
+	var l = 0;
+	
+	this.type=new ScilabString(new data("diagram",i++,l),new data("props",i++,l),new data("objs",i++,l),new data("version",i++,l),new data("contrib",i++,l));
+	this.props = options.props|| scicos_params();
+	this.objs = options.objs || list();
+	this.version = options.version || new ScilabString(new data("",0,0));
+	this.contrib = options.contrib || list();
+	
+	return mlist(this.type,this.props,this.objs,this.version,this.contrib);
 }
 
 
@@ -314,7 +321,7 @@ function scicos_params() {
 	
 	var options = arguments[0] || new Object();
 	var i = 0;
-	var l = 0
+	var l = 0;
 	
 	this.type=new ScilabString(new data("params",i++,l),new data("wpar",i++,l),new data("title",i++,l),new data("tol",i++,l),new data("tf",i++,l),new data("context",i++,l),new data("void1",i++,l),new data("options",i++,l),new data("void2",i++,l),new data("void3",i++,l),new data("doc",i++,l));
 	this.wpar = options.wpar || new ScilabDouble(new data(600,0,0),new data(450,1,0),new data(0,2,0),new data(0,3,0),new data(600,4,0),new data(450,5,0));
