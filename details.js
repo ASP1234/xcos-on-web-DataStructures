@@ -252,6 +252,20 @@ function mlist() {
 
 }
 
+function tlist() {
+	this.ScilabTList = [];
+	var i = 0;
+
+	for (i = 0; i < arguments.length; i++)
+		this.ScilabTList.push(arguments[i]);
+
+	this.ScilabTList.scilabClass = "ScilabTList";
+
+	return this.ScilabTList;
+
+}
+
+
 function scicos_model() {
 	var options = arguments[0] || new Object();
 	var i = 0;
@@ -285,6 +299,8 @@ function scicos_model() {
 	return mlist(this.type, this.sim, this.in, this.in2, this.intyp, this.out, this.out2, this.outtyp, this.evtin, this.evtout, this.state, this.dstate, this.odstate, this.ipar, this.rpar, this.opar, this.blocktype, this.firing, this.dep_ut, this.label, this.nzcross, this.nmode, this.equations, this.uid);
 }
 
+
+
 // This might also have to be overloaded
 function scicos_diagram() {
 	this.props = new scicos_params();
@@ -293,33 +309,44 @@ function scicos_diagram() {
 	this.contrib = [];
 }
 
-// This might also have to be overloaded
+
 function scicos_params() {
-	this.wpar = [600, 450, 0, 0, 600, 450];
-	this.titlex = 'Untitled';
-	this.tf = 100000;
-	this.tol = [Math.pow(10, -6), Math.pow(10, -6), Math.pow(10, -10), this.tf + 1, 0, 1, 0];
-	this.context = [];
-	this.void1 = [];
-	this.options = new default_options();
-	this.void2 = [];
-	this.void3 = [];
-	this.doc = [];
+	
+	var options = arguments[0] || new Object();
+	var i = 0;
+	var l = 0
+	
+	this.type=new ScilabString(new data("params",i++,l),new data("wpar",i++,l),new data("title",i++,l),new data("tol",i++,l),new data("tf",i++,l),new data("context",i++,l),new data("void1",i++,l),new data("options",i++,l),new data("void2",i++,l),new data("void3",i++,l),new data("doc",i++,l));
+	this.wpar = options.wpar || new ScilabDouble(new data(600,0,0),new data(450,1,0),new data(0,2,0),new data(0,3,0),new data(600,4,0),new data(450,5,0));
+	this.titlex = options.title||options.Title||new ScilabString(new data("Untitled",0,0));
+	this.tf = options.tf|| new ScilabDouble(new data(100000,0,0));
+	this.tol = options.tol|| new ScilabDouble(new data(Math.pow(10, -6),0,0),new data(Math.pow(10, -6),0,1),new data(Math.pow(10, -10),0,2),new data(100001,0,3),new data(0,0,4),new data(1,0,5),new data(0,0,6));
+	this.context = options.context|| new ScilabString(new data("",0,0));
+	this.void1 = new ScilabDouble();
+	this.options = options.options||new default_options();
+	this.void2 = new ScilabDouble();
+	this.void3 = new ScilabDouble();
+	this.doc = options.doc || list();
+	
+	
+	return tlist(this.type,this.wpar,this.titlex,this.tol,this.tf,this.context,this.void1,this.options,this.void2,this.void3,this.doc);
+	
 }
 
 // This might also have to be overloaded
 function default_options() {
-	var options = new Object();
-	var col3d = [0.8, 0.8, 0.8];
-	options['3D'] = [true, 33];
-	options['Background'] = [8, 1]; // white,black
-	options['Link'] = [1, 5]; // black,red
-	options['ID'] = [
-		[4, 1, 10, 1],
-		[4, 1, 2, 1]
-	];
-	options['Cmap'] = col3d;
-	return options;
+	
+	var i=0;
+	var l=0;
+	
+	this.type=new ScilabString(new data("scsopt",i++,l),new data("3D",i++,l),new data("Background",i++,l),new data("Link",i++,l),new data("ID",i++,l),new data("Cmap",i++,l));
+	this.3D=list(new ScilabBoolean(new data("true",0,0)),new ScilabDouble(new data(33,0,0)));
+	this.Background=new ScilabDouble(new data(8,0,0),new data(1,1,0));
+	this.Link=new ScilabDouble(new data(1,0,0),new data(5,1,0));
+	this.ID=list(new ScilabDouble(new data(4,0,0),new data(1,1,0),new data(10,2,0),new data(1,3,0)),new ScilabDouble(new data(4,0,0),new data(1,1,0),new data(2,2,0),new data(1,3,0)));
+	this.Cmap=new ScilabDouble(new data(0.8,0,0),new data(0.8,1,0),new data(0.8,2,0));
+	
+	return tlist(this.type,this.3D,this.Background,this.Link,this.ID,this.Cmap);
 }
 
 function zeros(n) {
