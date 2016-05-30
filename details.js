@@ -410,6 +410,25 @@ function IFTHEL_f() {
 	return block;
 }
 
+
+
+function CLKSPLIT_f() {
+	var model = scicos_model();
+	model[sim] = new ScilabString(new data('split', 0, 0));
+	model[evtin]=new ScilabDouble(new data(-1,0,0));
+	model[evtout] = new ScilabDouble(new data(-1, 0, 0), new data(-1, 0, 1)) // 1, 1 -> -1, -1 inverse
+	model[blocktype] = new ScilabString(new data('d', 0, 0));
+	model[firing] = new ScilabDouble(new data(-1, 0, 0), new data(-1, 0, 1)); // inverse
+	model[dep_ut] = new ScilabBoolean(new data('true', 0, 0), new data('false', 1, 0));
+	
+	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CLKSPLIT_f\",sz(1),sz(2));", 0, 0));
+	
+	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model, new ScilabDouble(), gr_i); // 1 -> 80
+	block[graphics][style] = new ScilabString(new data("CLKSPLIT_f", 0, 0));
+	return block;
+}
+
+
 function ANDLOG_f() {
 	var model = scicos_model();
 	model[sim] = new ScilabString(new data('andlog', 0, 0));
