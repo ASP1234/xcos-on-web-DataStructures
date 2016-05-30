@@ -503,7 +503,7 @@
 						var details = doc.createElement('BasicBlock');
 						details.setAttribute('name', name);
 						details.setAttribute('label', label);
-						var obj = CLKOUT_f(); // This isn't even the right function!
+						var obj = ANDBLK(); // This isn't even the right function!
 						var encoder = new mxCodec();
 						var result = encoder.encode(obj);
 						var xml = mxUtils.getPrettyXml(result);
