@@ -88,7 +88,7 @@ const void1=6;
 const options=7;
 const void2=8;
 const void3=9;
-const doc=10;
+//const doc=10; not used
 //Params ends
 
 //Default options begins
@@ -568,7 +568,7 @@ function ANDBLK() {
 					  to : new ScilabDouble(new data(1,0,0),new data(1,1,0))
 	};
 	diagram[objs].push(scicos_link(scicos_link1));
-	diagrams[objs].push(input_port2);
+	diagram[objs].push(input_port2);
 	var scicos_link2={xx : new ScilabDouble(new data(161,0,0),new data(234,1,0),new data(234,2,0)), 
 					  yy : new ScilabDouble(new data(340,0,0),new data(340,1,0),new data(275.78,2,0)),
 					  ct : new ScilabDouble(new data(5,0,0),new data(-1,1,0)),
