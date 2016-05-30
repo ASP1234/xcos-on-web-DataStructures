@@ -362,10 +362,52 @@ function CLKIN_f() {
 	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
 	
 	var exprs=ScilabString(new data(port.toString(),0,0));
-	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model,exprs,new ScilabString()); // 1 -> 80
+	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CLKIN_f\",sz(1),sz(2));", 0, 0));
+	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model,exprs,gr_i); // 1 -> 80
 	
 	block[graphics][style] = new ScilabString(new data("CLKIN_f", 0, 0));
 	return block
+}
+
+function CLKOUT_f() {
+	var model = scicos_model();
+	var port=1;
+	
+	model[sim] = new ScilabString(new data('output', 0, 0));
+	model[evtin] = new ScilabDouble(); // 1, 1 -> -1, -1
+	model[ipar]=new ScilabDouble(new data(port,0,0));
+	model[blocktype] = new ScilabString(new data('d', 0, 0));
+	model[firing] = new ScilabDouble();
+	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
+	
+	var exprs=ScilabString(new data(port.toString(),0,0));
+	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CLKOUT_f\",sz(1),sz(2));", 0, 0));
+	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model,exprs,gr_i); // 1 -> 80
+	
+	block[graphics][style] = new ScilabString(new data("CLKOUT_f", 0, 0));
+	return block
+}
+
+
+function IFTHEL_f() {
+	var model = scicos_model();
+	model[sim] = list(new ScilabString(new data('ifthel', 0, 0)),new ScilabDouble(new data(-1,0,0)));
+	model[in1]=new ScilabDouble(new data(1,0,0));
+	model[in2]=new ScilabDouble(new data(1,0,0));
+	model[intyp]=new ScilabDouble(new data(-1,0,0));
+	model[evtin]=new ScilabDouble(new data(-1,0,0));
+	model[evtout] = new ScilabDouble(new data(-1, 0, 0), new data(-1, 0, 1)) // 1, 1 -> -1, -1 inverse
+	model[blocktype] = new ScilabString(new data('l', 0, 0));
+	model[firing] = new ScilabDouble(new data(-1, 0, 0), new data(-1, 0, 1)); // inverse
+	model[dep_ut] = new ScilabBoolean(new data('true', 0, 0), new data('false', 1, 0));
+	model[nmode] = new ScilabDouble(new data(1,0,0));
+	model[nzcross] = new ScilabDouble(new data(1,0,0));
+	
+	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));", 0, 0));
+	var exprs=new ScilabString(new data("1",0,0),new data("1",0,1)); //value model.in, model.nmode inverse
+	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model, exprs, gr_i); // 3 -> 80
+	block[graphics][style] = new ScilabString(new data("IFTHEL_f", 0, 0));
+	return block;
 }
 
 function ANDLOG_f() {
