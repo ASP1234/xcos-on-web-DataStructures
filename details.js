@@ -203,11 +203,19 @@ function ScilabString() {
 
 	for (i = 0; i < arguments.length; i++)
 		this['data' + i] = arguments[i];
-
-
-	this.height = 1; // @Nimish: This is hardcoded. Please check later!
-
-	this.width = arguments.length;
+	if(arguments.length>1)
+	{
+		if(arguments[arguments.length-1].line>0)
+		{
+			this.height=arguments.length;
+			this.width=arguments[0].column+1;
+		}
+		else
+		{
+			this.height = arguments[0].line+1;
+			this.width = arguments.length;
+		}
+	}
 
 }
 
@@ -216,11 +224,19 @@ function ScilabBoolean() {
 
 	for (i = 0; i < arguments.length; i++)
 		this['data' + i] = arguments[i];
-
-	this.height = 1;
-
-	this.width = arguments.length;
-
+	if(arguments.length>1)
+	{
+		if(arguments[arguments.length-1].line>0)
+		{
+			this.height=arguments.length;
+			this.width=arguments[0].column+1;
+		}
+		else
+		{
+			this.height = arguments[0].line+1;
+			this.width = arguments.length;
+		}
+	}
 }
 
 function ScilabDouble() {
@@ -228,11 +244,19 @@ function ScilabDouble() {
 
 	for (i = 0; i < arguments.length; i++)
 		this['data' + i] = arguments[i]
-
-	this.height = 1;;
-
-	this.width = arguments.length;
-
+	if(arguments.length>1)
+	{
+		if(arguments[arguments.length-1].line>0)
+		{
+			this.height=arguments.length;
+			this.width=arguments[0].column+1;
+		}
+		else
+		{
+			this.height = arguments[0].line+1;
+			this.width = arguments.length;
+		}
+	}
 }
 
 function isNumber(obj) {
@@ -277,7 +301,7 @@ function mlist() {
 
 	for (i = 0; i < arguments.length; i++)
 		this.ScilabMList.push(arguments[i]);
-	this.varName="";
+	this.ScilabMList.varName="";
 	this.ScilabMList.scilabClass = "ScilabMList";
 
 	return this.ScilabMList;
