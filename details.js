@@ -88,7 +88,7 @@ const void1=6;
 const options=7;
 const void2=8;
 const void3=9;
-//const doc=10; not used
+//const doc=10;
 //Params ends
 
 //Default options begins
@@ -236,7 +236,11 @@ function ScilabDouble() {
 }
 
 function isNumber(obj) {
-	return !isNaN(parseFloat(obj))
+	if(obj==="")
+		return false;
+	if(typeof obj == "string")
+		return false;
+		return !isNaN(obj);
 }
 
 function data() {
@@ -273,7 +277,7 @@ function mlist() {
 
 	for (i = 0; i < arguments.length; i++)
 		this.ScilabMList.push(arguments[i]);
-
+	this.varName="";
 	this.ScilabMList.scilabClass = "ScilabMList";
 
 	return this.ScilabMList;
@@ -303,7 +307,7 @@ function scicos_model() {
 	this.sim = options.sim || new ScilabString();
 	this.in = options.in || new ScilabDouble();
 	this.in2 = options.in2 || new ScilabDouble();
-	this.intyp = options.intyp || new ScilabDouble(new data(1, 0, 0));
+	this.intyp = options.intyp || new ScilabDouble();//new data(1, 0, 0)
 	this.out = options.out || new ScilabDouble();
 	this.out2 = options.out2 || new ScilabDouble();
 	this.outtyp = options.outtyp || new ScilabDouble(new data(1, 0, 0));
@@ -314,11 +318,11 @@ function scicos_model() {
 	this.odstate = options.odstate || list();
 	this.ipar = options.ipar || new ScilabDouble();
 	this.rpar = options.rpar || new ScilabDouble();
-	this.opar = options.opar || new ScilabDouble();
+	this.opar = options.opar || list();//new ScilabDouble();
 	this.blocktype = options.blocktype || new ScilabString(new data('c', 0, 0));
 	this.firing = options.firing || new ScilabDouble();
 	this.dep_ut = options.dep_ut || new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
-	this.label = options.label || new ScilabString(); // If label not available, use image
+	this.label = options.label || new ScilabString(new data("",0,0)); // If label not available, use image
 	this.nzcross = options.nzcross || new ScilabDouble(new data(0, 0, 0));
 	this.nmode = options.nmode || new ScilabDouble(new data(0, 0, 0));;
 	this.equations = options.equations || list();
@@ -335,13 +339,13 @@ function scicos_diagram() {
 	var i = 0;
 	var l = 0;
 	
-	this.type=new ScilabString(new data("diagram",i++,l),new data("props",i++,l),new data("objs",i++,l),new data("version",i++,l),new data("contrib",i++,l));
+	this.type2=new ScilabString(new data("diagram",i++,l),new data("props",i++,l),new data("objs",i++,l),new data("version",i++,l),new data("contrib",i++,l));
 	this.props = options.props|| scicos_params();
 	this.objs = options.objs || list();
 	this.version = options.version || new ScilabString(new data("",0,0));
 	this.contrib = options.contrib || list();
 	
-	return mlist(this.type,this.props,this.objs,this.version,this.contrib);
+	return mlist(this.type2,this.props,this.objs,this.version,this.contrib);
 }
 
 
@@ -423,7 +427,7 @@ function CLKIN_f() {
 	model[firing] = new ScilabDouble(new data(-1,0,0));
 	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
 	
-	var exprs=ScilabString(new data(port.toString(),0,0));
+	var exprs=ScilabString(new data(""+port,0,0));
 	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CLKIN_f\",sz(1),sz(2));", 0, 0));
 	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model,exprs,gr_i); // 1 -> 80
 	
@@ -436,13 +440,13 @@ function CLKOUT_f() {
 	var port=1;
 	
 	model[sim] = new ScilabString(new data('output', 0, 0));
-	model[evtin] = new ScilabDouble(); // 1, 1 -> -1, -1
+	model[evtin] = new ScilabDouble(new data(-1,0,0)); // 1, 1 -> -1, -1
 	model[ipar]=new ScilabDouble(new data(port,0,0));
 	model[blocktype] = new ScilabString(new data('d', 0, 0));
 	model[firing] = new ScilabDouble();
 	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
 	
-	var exprs=ScilabString(new data(port.toString(),0,0));
+	var exprs=ScilabString(new data(""+port,0,0));
 	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CLKOUT_f\",sz(1),sz(2));", 0, 0));
 	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model,exprs,gr_i); // 1 -> 80
 	
@@ -503,10 +507,10 @@ function ANDLOG_f() {
 
 	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"ANDLOG_f\",sz(1),sz(2));", 0, 0));
 	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model, new ScilabDouble(), gr_i); // 3 -> 80
-	/*
+	
 	// Style
-	block.graphics.out_implicit = "E";
-	//block.graphics.out_style = "ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10.0;rotation=0";*/
+	block[graphics][out_implicit] = new ScilabString(new data("E",0,0));
+	//block.graphics.out_style = "ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10.0;rotation=0";
 	block[graphics][style] = new ScilabString(new data("ANDLOG_f", 0, 0));
 	return block;
 }
@@ -550,7 +554,7 @@ function ANDBLK() {
 	ifthel[graphics][flip]=new ScilabBoolean(new data("true",0,0));
 	ifthel[graphics][pin]=new ScilabDouble(new data(9,0,0));
 	ifthel[graphics][pein]=new ScilabDouble(new data(12,0,0));
-	ifthel[graphics][peout]=new ScilabDouble(new data(8,0,0),new data(0,1,0));
+	ifthel[graphics][peout]=new ScilabDouble(new data(8,0,0),new data(0,0,1));
 	
 	var split=CLKSPLIT_f("define");
 	split[graphics][orig]=new ScilabDouble(new data(234,0,0),new data(275.78348,1,0));
@@ -621,5 +625,5 @@ function ANDBLK() {
 	x[model][firing]= new ScilabBoolean(new data("false",0,0));
 	x[model][dep_ut]= new ScilabBoolean(new data("false",0,0),new data("false",1,0));
 	x[model][rpar]=diagram;
-	return x;
+	return diagram;
 }
