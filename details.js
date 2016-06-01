@@ -1,6 +1,9 @@
 // Only during printing, their nomenclature will change
 // Good read: http://javascript.info/tutorial/arguments#keyword-arguments
 /*
+Author name: ASP1234, Chhavi2208
+*/
+/*
 function findModel() {
 	var model = ["model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations", "uid"];
 	return model.indexOf(arguments[0]);
@@ -246,12 +249,12 @@ function ScilabDouble() {
 		this['data' + i] = arguments[i]
 	if(arguments.length>1)
 	{
-		if(arguments[arguments.length-1].line>0)
+		if(arguments[arguments.length-1].line>0) //@ASP1234 Inverse Array
 		{
 			this.height=arguments.length;
 			this.width=arguments[0].column+1;
 		}
-		else
+		else									//@ASP1234 Normal Array
 		{
 			this.height = arguments[0].line+1;
 			this.width = arguments.length;
@@ -537,6 +540,31 @@ function ANDLOG_f() {
 	//block.graphics.out_style = "ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10.0;rotation=0";
 	block[graphics][style] = new ScilabString(new data("ANDLOG_f", 0, 0));
 	return block;
+}
+
+function BasicBlock()
+{
+	var options = arguments[0] || new Object();
+	
+	this.angle=options.angle||"";
+	this.blockType=options.blockType||"";
+	this.connectable=options.connectable||"";
+	this.dependsOnT=options.dependsOnT||"";
+	this.dependsOnU=options.dependsOnU||"";
+	this.id=options.id||"";
+	this.interfaceFunctionName=options.interfaceFunctionName||"";
+	this.ordering=options.ordering||"";
+	this.parent=options.parent||"";
+	this.simulationFunctionName=options.simulationFunctionName||"";
+	this.simulationFunctionType=options.simulationFunctionType||"";
+	this.style=options.style||"";
+	this.value=options.value||"";
+	this.vertex=options.vertex||"";
+	this.visible=options.visible||"";
+	
+	if(this.style=="ANDBLK")
+		this.example=ANDBLK();
+		
 }
 
 function ANDBLK() {
