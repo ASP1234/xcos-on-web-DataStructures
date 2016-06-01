@@ -304,6 +304,7 @@ function mlist() {
 
 	for (i = 0; i < arguments.length; i++)
 		this.ScilabMList.push(arguments[i]);
+		
 	this.ScilabMList.varName="";
 	this.ScilabMList.scilabClass = "ScilabMList";
 
@@ -414,7 +415,7 @@ function default_options() {
 	
 	return tlist(this.type,this.D3,this.Background,this.Link,this.ID,this.Cmap);
 }
-
+//Returns ScilabDouble which contains a list with size =n and all values=0
 function zeros(n) {
 	var arg=new  Array(n + 1).join('0').split('').map(parseFloat);
 	var port = new ScilabDouble();
@@ -563,7 +564,9 @@ function BasicBlock()
 	this.visible=options.visible||"";
 	
 	if(this.style=="ANDBLK")
-		this.example=ANDBLK();
+		this.realParameters=ANDBLK();
+	else if(this.style=="CONST_m")
+		this.realParameters=CONST_m();
 		
 }
 
@@ -677,5 +680,46 @@ function ANDBLK() {
 	x[model][firing]= new ScilabBoolean(new data("false",0,0));
 	x[model][dep_ut]= new ScilabBoolean(new data("false",0,0),new data("false",1,0));
 	x[model][rpar]=diagram;
-	return diagram;
+	return x;
+}
+
+function sci2exp(c)
+{
+	if(c.length==1)
+	return new ScilabString(new data(c.toString(),0,0));
+	else
+	return new ScilabString(new data("["+c.toString()+"]",0,0));
+}
+
+
+function C()
+{
+	var i=0;
+	var arr=[]
+	for(i=0;i<arguments[0].length;i++)
+	{
+		arr.push(new data(arguments[0][i],i,0));
+	}
+	return new ScilabDouble(...arr);
+}
+
+function CONST_m()
+{
+	var c=[1];
+	var model = scicos_model();
+	model[sim] = list(new ScilabString(new data('cstblk4', 0, 0)),new ScilabDouble(new data(4,0,0)));
+	model[in1]=new ScilabDouble();
+	model[out]=new ScilabDouble(new data(c.length,0,0));
+	model[in2]=new ScilabDouble();
+	model[out2]=new ScilabDouble(new data(c.length,0,0));
+	model[rpar]=C(c);
+	model[opar]=list();
+	model[blocktype] = new ScilabString(new data('d', 0, 0));
+	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
+	
+	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CONST_m\",sz(1),sz(2));", 0, 0));
+	var exprs=sci2exp(c);
+	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model, exprs, gr_i); // 1 -> 80
+	block[graphics][style] = new ScilabString(new data("CONST_m", 0, 0));
+	return block;
 }
