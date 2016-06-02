@@ -218,13 +218,13 @@
 				// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				// https://jgraph.github.io/mxgraph/docs/js-api/files/model/mxCell-js.html
 				// Uncomment this block to see XML tags work
-				/*graph.convertValueToString = function(cell)
+				graph.convertValueToString = function(cell)
 				{
 				  if (mxUtils.isNode(cell.value))
 				  {
 				    return cell.getAttribute('label', '');
 				  }
-				};*/
+				};
 				
 				var cellLabelChanged = graph.cellLabelChanged;
 				graph.cellLabelChanged = function(cell, newValue, autoSize)
@@ -501,48 +501,35 @@
 					var label = getImgHTML(name); // Will not exist for all blocks
 					
 					if(name == 'ANDBLK'){
-						var Object = {
-							style: "ANDBLK",
-							simulationFunctionName: "csuper",
-							simulationFunctionType: "DEFAULT",
-							blockType: "h",
-							interfaceFunctionName: "ANDBLK"
-						};
-						/*
-						var details = doc.createElement('BasicBlock');
-						details.setAttribute('name', name);
-						details.setAttribute('label', label);
-						*/
-						var obj = new BasicBlock(Object); // This isn't even the right function!
+						
+						var details = new BasicBlock(name);
 						var encoder = new mxCodec();
-						var result = encoder.encode(obj);
+						var result = encoder.encode(details);
+						result.setAttribute('label',label);
+			
 						var xml = mxUtils.getPrettyXml(result);
+					
 						var blockName = document.createTextNode(xml);
 						//alert(blockName);
 						//details.appendChild(blockName);
 						//alert(details);
 						//console.log(details);
-						v1 = graph.insertVertex(parent, null, obj, x, y, 80, 80, 'ANDBLK'); //replaced details with obj @Chhavi
+						v1 = graph.insertVertex(parent, null, result, x, y, 80, 80, 'ANDBLK'); 
 						createPorts(graph, v1, [], ['CONTROL','CONTROL'], [], ['COMMAND']);
+				
 					}
 					else if(name == 'CMSCOPE'){
 						v1 = graph.insertVertex(parent, null, label, x, y, 80, 80,'CMSCOPE');
 						createPorts(graph, v1, ['EXPLICIT','EXPLICIT'], ['CONTROL'], [], []);
 					}
 					else if(name == 'CONST_m'){
-						var Object = {
-							style: "CONST_m",
-							simulationFunctionName: "cstblk4",
-							simulationFunctionType: "C_OR_FORTRAN",
-							blockType: "d",
-							interfaceFunctionName: "CONST_m"
-						};
-						var obj = new BasicBlock(Object); // This isn't even the right function!
+						
+						var details = new BasicBlock(name); // This isn't even the right function!
 						var encoder = new mxCodec();
-						var result = encoder.encode(obj);
+						var result = encoder.encode(details);
 						var xml = mxUtils.getPrettyXml(result);
 						var blockName = document.createTextNode(xml);
-						v1 = graph.insertVertex(parent, null, obj, x, y, 80, 80,'CONST_m');
+						v1 = graph.insertVertex(parent, null, details, x, y, 80, 80,'CONST_m');
 						createPorts(graph, v1, [], [], ['EXPLICIT'], []);
 					}
 					else if(name == 'CONVERT'){

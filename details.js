@@ -545,7 +545,28 @@ function ANDLOG_f() {
 
 function BasicBlock()
 {
-	var options = arguments[0] || new Object();
+	switch(arguments[0])
+	{
+		case "ANDBLK":
+			var attributes = {
+				style: "ANDBLK",
+				simulationFunctionName: "csuper",
+				simulationFunctionType: "DEFAULT",
+				blockType: "h",
+				interfaceFunctionName: "ANDBLK"
+			};
+			break;
+		case "CONST_m":
+			var attributes = {
+				style: "CONST_m",
+				simulationFunctionName: "cstblk4",
+				simulationFunctionType: "C_OR_FORTRAN",
+				blockType: "d",
+				interfaceFunctionName: "CONST_m"
+			};
+			break;
+	}
+	var options = attributes || new Object();
 	
 	this.angle=options.angle||"";
 	this.blockType=options.blockType||"";
@@ -563,11 +584,15 @@ function BasicBlock()
 	this.vertex=options.vertex||"";
 	this.visible=options.visible||"";
 	
-	if(this.style=="ANDBLK")
-		this.realParameters=ANDBLK();
-	else if(this.style=="CONST_m")
-		this.realParameters=CONST_m();
-		
+	switch(arguments[0])
+	{
+		case "ANDBLK":
+			this.realParameters=ANDBLK();
+			break;
+		case "CONST_m":
+			this.realParameters=CONST_m();
+			break;
+	}
 }
 
 function ANDBLK() {
