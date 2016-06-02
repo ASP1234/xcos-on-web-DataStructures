@@ -730,21 +730,28 @@ function C()
 
 function CONST_m()
 {
-	var c=[1];
-	var model = scicos_model();
-	model[sim] = list(new ScilabString(new data('cstblk4', 0, 0)),new ScilabDouble(new data(4,0,0)));
-	model[in1]=new ScilabDouble();
-	model[out]=new ScilabDouble(new data(c.length,0,0));
-	model[in2]=new ScilabDouble();
-	model[out2]=new ScilabDouble(new data(c.length,0,0));
-	model[rpar]=C(c);
-	model[opar]=list();
-	model[blocktype] = new ScilabString(new data('d', 0, 0));
-	model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
-	
-	var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CONST_m\",sz(1),sz(2));", 0, 0));
-	var exprs=sci2exp(c);
-	var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model, exprs, gr_i); // 1 -> 80
-	block[graphics][style] = new ScilabString(new data("CONST_m", 0, 0));
-	return block;
+	switch(arguments[0])
+	{
+		case "get":
+			var array=["Constant Value"];
+			return array;
+		case "define":
+			var c=[1];
+			var model = scicos_model();
+			model[sim] = list(new ScilabString(new data('cstblk4', 0, 0)),new ScilabDouble(new data(4,0,0)));
+			model[in1]=new ScilabDouble();
+			model[out]=new ScilabDouble(new data(c.length,0,0));
+			model[in2]=new ScilabDouble();
+			model[out2]=new ScilabDouble(new data(c.length,0,0));
+			model[rpar]=C(c);
+			model[opar]=list();
+			model[blocktype] = new ScilabString(new data('d', 0, 0));
+			model[dep_ut] = new ScilabBoolean(new data('false', 0, 0), new data('false', 1, 0));
+			
+			var gr_i = new ScilabString(new data("xstringb(orig(1),orig(2),\"CONST_m\",sz(1),sz(2));", 0, 0));
+			var exprs=sci2exp(c);
+			var block = new standard_define(new ScilabDouble(new data(80, 0, 0), new data(80, 1, 0)), model, exprs, gr_i); // 1 -> 80
+			block[graphics][style] = new ScilabString(new data("CONST_m", 0, 0));
+			return block;
+	}
 }
