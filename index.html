@@ -404,8 +404,7 @@
                 "Buffer size"
             ];*/
             var array=CONST_m("get");
-            //console.log(array);
-
+            
             // Create basic structure for the form.
             var content = document.createElement('div');
             //content.id = "contentProperties";
@@ -466,7 +465,6 @@
                 var i=0;
                 for(i=0;i<array.length;i++)
                     params[array[i]] = document.getElementById(array[i]).value;
-                console.log(params);
                 CONST_m("set",params);
             };
             myform.appendChild(btn);
@@ -603,7 +601,6 @@
 				        var details=new BasicBlock(name);
 						var encoder = new mxCodec();
 						var result = encoder.encode(details);
-						console.log(result);
 						result.setAttribute('label',label);
 						//var xml = mxUtils.getPrettyXml(result);
 						//var blockName = document.createTextNode(xml);
@@ -619,8 +616,10 @@
                     } else if (name == 'CMSCOPE') {
                         v1 = graph.insertVertex(parent, null, label, x, y, 80, 80, 'CMSCOPE');
                         createPorts(graph, v1, ['EXPLICIT', 'EXPLICIT'], ['CONTROL'], [], []);
+                        
                     } else if (name == 'CONST_m') {
-                        var details = new BasicBlock(name); // This isn't even the right function!
+                        
+                        var details = new BasicBlock(name);
 						var encoder = new mxCodec();
 						var result = encoder.encode(details);
 						result.setAttribute('label',"1");

@@ -443,7 +443,7 @@ function blocks()
 	switch(arguments[0])
 	{
 		case "ANDBLK": return ANDBLK(); break;
-		case "CONST_m": return CONST_m(); break;
+		case "CONST_m": return CONST_m("define"); break;
 	}
 }
 
@@ -591,7 +591,7 @@ function CONST_m()
 			model[out]=new ScilabDouble([c.length]);
 			model[in2]=new ScilabDouble();
 			model[out2]=new ScilabDouble([c.length]);
-			model[rpar]=C(c);
+			model[rpar]=new ScilabDouble(c);
 			model[opar]=list();
 			model[blocktype] = new ScilabString(["d"]);
 			model[dep_ut] = new ScilabBoolean([false,false]);
@@ -715,25 +715,13 @@ function CONST_m_attr()
 	return attributes;
 }
 
-
-
-function sci2exp(c)
+function sci2exp()
 {
-	if(c.length==1)
-	return new ScilabString(new data(c.toString(),0,0));
+	if(arguments[0].length==1)
+		return new ScilabString([arguments[0][0].toString()]);
 	else
-	return new ScilabString(new data("["+c.toString()+"]",0,0));
+		return new ScilabString(["["+arguments[0].toString()+"]"]);
 }
 
 
-function C()
-{
-	var i=0;
-	var arr=[];
-	for(i=0;i<arguments[0].length;i++)
-	{
-		arr.push(new data(arguments[0][i],i,0));
-	}
-	return new ScilabDouble(...arr);
-}
 
