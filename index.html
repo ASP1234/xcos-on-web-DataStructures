@@ -600,10 +600,10 @@
                     var label = getImgHTML(name); // Will not exist for all blocks
 
                     if(name == 'ANDBLK'){
-						
-						var details = new BasicBlock(name);
+				        var details=new BasicBlock(name);
 						var encoder = new mxCodec();
 						var result = encoder.encode(details);
+						console.log(result);
 						result.setAttribute('label',label);
 						//var xml = mxUtils.getPrettyXml(result);
 						//var blockName = document.createTextNode(xml);
