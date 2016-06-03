@@ -391,7 +391,7 @@
 
         function showPropertiesWindow(graph) {
 
-            var array = ["Number of curves",
+            /*var array = ["Number of curves",
                 "color (>0) or mark (<0)",
                 "line or mark size",
                 "Output window number (-1 for automatic)",
@@ -402,7 +402,9 @@
                 "Zmin and Zmax",
                 "Alpha and Theta",
                 "Buffer size"
-            ];
+            ];*/
+            var array=CONST_m("get");
+            //console.log(array);
 
             // Create basic structure for the form.
             var content = document.createElement('div');
@@ -460,7 +462,12 @@
 
             // Executes when button 'btn' is clicked.
             btn.onclick = function() {
-
+                var params = {};
+                var i=0;
+                for(i=0;i<array.length;i++)
+                    params[array[i]] = document.getElementById(array[i]).value;
+                console.log(params);
+                CONST_m("set",params);
             };
             myform.appendChild(btn);
 
